@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjeta de Fan - Club de Fans Oficial de Amanda Miguel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-purple': '#1a0b2e',
+                        'medium-purple': '#2d1b4e',
+                        'light-purple': '#4c2a85',
+                        'accent-blue': '#3b82f6',
+                        'accent-pink': '#ff6b9d'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 50%, #4c2a85 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* CUSTOM CSS PARA LIGHTBOX Y BLOQUEO DE DESPLAZAMIENTO */
+        body.no-scroll {
+            overflow: hidden; /* Evita el desplazamiento cuando el lightbox está activo */
+        }
+
+        #lightbox {
+            opacity: 0; /* Inicialmente oculto */
+            pointer-events: none; /* Evita clics en el lightbox oculto */
+            transition: opacity 0.3s ease-in-out; /* Transición suave */
+        }
+
+        #lightbox.active {
+            opacity: 1; /* Totalmente visible */
+            pointer-events: auto; /* Permite clics cuando es visible */
+        }
+
+        /* Opcional: para que las imágenes rotadas mantengan su perspectiva */
+        .photo-item img {
+            transform-origin: center center;
+            will-change: transform; /* Sugerencia al navegador para transformaciones más suaves */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+    <nav class="gradient-bg shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-accent-blue" style="font-family: 'Cinzel', serif;">Amanda Miguel</h1>
+                </div><div class="hidden md:block">
+                <div class="ml-10 flex items-baseline space-x-8">
+                    <a href="#home" class="text-white hover:text-accent-blue transition duration-300 px-3 py-2 rounded-md text-sm font-medium">Inicio</a>
+                    <a href="#about" class="text-white hover:text-accent-blue transition duration-300 px-3 py-2 rounded-md text-sm font-medium">Acerca de</a>
+                    <a href="#photos" class="text-white hover:text-accent-blue transition duration-300 px-3 py-2 rounded-md text-sm font-medium">Fotos</a>
+                    <a href="#contact" class="text-white hover:text-accent-blue transition duration-300 px-3 py-2 rounded-md text-sm font-medium">Contacto</a>
+                </div>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-white hover:text-accent-blue focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="mobile-menu" class="mobile-menu md:hidden fixed top-16 left-0 w-full h-screen bg-dark-purple z-40">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="#home" class="text-white hover:text-accent-blue block px-3 py-2 rounded-md text-base font-medium">Inicio</a>
+            <a href="#about" class="text-white hover:text-accent-blue block px-3 py-2 rounded-md text-base font-medium">Acerca de</a>
+            <a href="#photos" class="text-white hover:text-accent-blue block px-3 py-2 rounded-md text-base font-medium">Fotos</a>
+            <a href="#contact" class="text-white hover:text-accent-blue block px-3 py-2 rounded-md text-base font-medium">Contacto</a>
+        </div>
+    </div>
+</nav>
+
+    <section id="home" class="gradient-bg min-h-screen flex items-center pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center">
+                <div class="mb-8">
+                    <img src="Amanda.jpg" alt="Amanda Miguel" class="w-48 h-48 md:w-64 md:h-64 rounded-full mx-auto object-cover border-4 border-accent-blue shadow-2xl">
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                    <span class="text-accent-blue">Tarjeta de Fan</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
+                    Únete al Club de Fans Oficial de Amanda Miguel y obtén acceso exclusivo a tu ícono musical favorito
+                </p>
+                <a href="#membership" class="inline-block bg-accent-pink hover:bg-pink-600 text-white font-bold py-4 px-8 rounded-full text-lg transition duration-300 transform hover:scale-105">
+                    Elige Tu Membresía
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="membership" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-accent-blue">Elige Tu Tarjeta de Fan</h2>
+                <p class="text-xl text-gray-300">Conoce a Amanda Miguel con beneficios exclusivos de membresía <br> Nota: todas las compras se realizan a través de la cuenta oficial de Amanda Miguel en la aplicación Telegram </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card-hover bg-gradient-to-b from-medium-purple to-dark-purple rounded-2xl p-8 text-center border border-gray-700">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">REGULAR</h3>
+                        <div class="text-4xl font-bold text-accent-blue mb-4">500 PESOS MXN</div>
+                        <p class="text-gray-300">MXN por año</p>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-left">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-blue mr-3"></i>
+                            <span>Obtén mi contacto privado</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-blue mr-3"></i>
+                            <span>Videollamadas</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-blue mr-3"></i>
+                            <span>Acceso a la Comunidad de Fans</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-blue mr-3"></i>
+                            <span>Saludos de Cumpleaños</span>
+                        </li>
+                    </ul>
+                    <a href="https://t.me/officialamandamiguel" target="_blank" rel="noopener noreferrer">
+    <button class="w-full bg-accent-blue hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">
+        OBTENER TARJETA
+    </button>
+</a>
+                </div>
+                <div class="card-hover bg-gradient-to-b from-light-purple to-medium-purple rounded-2xl p-8 text-center border-2 border-accent-pink relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-accent-pink text-white px-4 py-1 rounded-full text-sm font-bold">POPULAR</span>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">VIP</h3>
+                        <div class="text-4xl font-bold text-accent-pink mb-4">1000 PESOS MXN</div>
+                        <p class="text-gray-300">MXN por año</p>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-left">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-pink mr-3"></i>
+                            <span>Todos los Beneficios Regulares</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-pink mr-3"></i>
+                            <span>Contacto Privado</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-pink mr-3"></i>
+                            <span>Acceso a Música Nueva</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-pink mr-3"></i>
+                            <span>Encuentro Virtual (Meet & Greet)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-pink mr-3"></i>
+                            <span>Merchandising Autografiado</span>
+                        </li>
+                    </ul>
+                     <a href="https://t.me/officialamandamiguel" target="_blank" rel="noopener">
+    <button class="w-full bg-accent-blue hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">
+        OBTENER TARJETA
+    </button>
+</a>
+                </div>
+                <div class="card-hover bg-gradient-to-b from-medium-purple to-dark-purple rounded-2xl p-8 text-center border border-gray-700">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">VVIP</h3>
+                        <div class="text-4xl font-bold text-accent-blue mb-4">2,500 PESOS MXN</div>
+                        <p class="text-gray-300">MXN por año</p>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-left">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-blue mr-3"></i>
+                            <span>Todos los Beneficios VIP</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-blue mr-3"></i>
+                            <span>Conoce a Amanda en Persona</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-blue mr-3"></i>
+                            <span>Acceso a Backstage</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-blue mr-3"></i>
+                            <span>Llamada Telefónica Personal</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-blue mr-3"></i>
+                            <span>Entradas Exclusivas para Conciertos</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-accent-blue mr-3"></i>
+                            <span>Coleccionables de Edición Limitada</span>
+                        </li>
+                    </ul>
+                     <a href="https://t.me/officialamandamiguel" target="_blank" rel="noopener">
+    <button class="w-full bg-accent-blue hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105">
+        OBTENER TARJETA
+    </button>
+</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="photos" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-accent-blue">FOTOS</h2>
+            </div>
+
+            <div class="relative w-full max-w-4xl mx-auto h-[600px] flex items-center justify-center overflow-hidden">
+                <div class="absolute w-[300px] h-[200px] top-[10%] left-[10%] -rotate-12 transform hover:scale-105 transition-transform duration-300 cursor-pointer photo-item">
+                    <img src="Amanda.jpg" data-src="Amanda.jpg" alt="Foto de Amanda Miguel 1" class="w-full h-full object-cover shadow-lg rounded">
+                </div>
+                <div class="absolute w-[300px] h-[150px] top-[25%] right-[5%] rotate-6 transform hover:scale-105 transition-transform duration-300 cursor-pointer photo-item">
+                    <img src="Amanda3.jpg" data-src="Amanda3.jpg" alt="Foto de Amanda Miguel 2" class="w-full h-full object-cover shadow-lg rounded">
+                </div>
+                <div class="absolute w-[280px] h-[180px] bottom-[15%] left-[20%] rotate-3 transform hover:scale-105 transition-transform duration-300 cursor-pointer photo-item">
+                    <img src="Amanda4.jpg" data-src="Amanda4.jpg" alt="Foto de Amanda Miguel 3" class="w-full h-full object-cover shadow-lg rounded">
+                </div>
+                <div class="absolute w-[200px] h-[170px] bottom-[5%] right-[15%] -rotate-6 transform hover:scale-105 transition-transform duration-300 cursor-pointer photo-item">
+                    <img src="Amanda1.jpg" data-src="Amanda1.jpg" alt="Foto de Amanda Miguel 4" class="w-full h-full object-cover shadow-lg rounded">
+                </div>
+                <div class="absolute w-[150px] h-[150px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-3 transform hover:scale-105 transition-transform duration-300 cursor-pointer photo-item">
+                    <img src="Amanda2.jpg" data-src="Amanda2.jpg" alt="Foto Principal de Amanda Miguel" class="w-full h-full object-cover shadow-lg rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-dark-purple py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-8 text-accent-blue">Conecta con Amanda Miguel</h3>
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="https://www.facebook.com/AmandaMiguels?mibextid=rS40aB7S9Ucbxw6v" class="text-white hover:text-accent-blue transition duration-300 transform hover:scale-110">
+                        <i class="fab fa-facebook-f text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-accent-blue transition duration-300 transform hover:scale-110">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-accent-blue transition duration-300 transform hover:scale-110">
+                        <i class="fab fa-youtube text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-accent-blue transition duration-300 transform hover:scale-110">
+                        <i class="fab fa-instagram text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-accent-blue transition duration-300 transform hover:scale-110">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                </div>
+                <div class="border-t border-gray-700 pt-8">
+                    <p class="text-gray-400">
+                        &copy; 2024 Club de Fans Oficial de Amanda Miguel. Todos los derechos reservados.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[1000]">
+        <div class="relative bg-dark-purple p-4 rounded-lg shadow-xl max-w-3xl lg:max-w-5xl max-h-[90vh] overflow-hidden">
+            <button id="lightbox-close" class="absolute top-2 right-2 text-white text-4xl font-bold bg-transparent border-none cursor-pointer p-2 rounded-full hover:bg-gray-700 transition-colors duration-200 focus:outline-none leading-none">
+                &times;
+            </button>
+            <img id="lightbox-img" src="" alt="Foto Expandida" class="max-w-full max-h-[85vh] object-contain mx-auto rounded">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Script existente del menú móvil
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                });
+
+                // Añadir desplazamiento suave para los enlaces del menú móvil
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function(event) {
+                        const href = this.getAttribute('href');
+                        if (href.startsWith('#')) {
+                            event.preventDefault(); // Evitar el comportamiento predeterminado del enlace para enlaces de anclaje
+                            const targetId = href.substring(1);
+                            const targetElement = document.getElementById(targetId);
+                            if (targetElement) {
+                                targetElement.scrollIntoView({ behavior: 'smooth' });
+                                mobileMenu.classList.remove('active'); // Cerrar el menú móvil después de hacer clic
+                            }
+                        }
+                    });
+                });
+            }
+
+            // --- Script de Galería de Imágenes/Lightbox ---
+            const photoItems = document.querySelectorAll('.photo-item');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxClose = document.getElementById('lightbox-close');
+            const body = document.body;
+
+            photoItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgElement = this.querySelector('img');
+                    const fullSrc = imgElement.getAttribute('data-src'); // Obtener la ruta completa de la imagen desde data-src
+                    const altText = imgElement.getAttribute('alt'); // Obtener el texto alternativo
+
+                    lightboxImg.src = fullSrc;
+                    lightboxImg.alt = altText;
+                    lightbox.classList.add('active'); // Mostrar lightbox
+                    body.classList.add('no-scroll'); // Evitar el desplazamiento del cuerpo
+                });
+            });
+
+            lightboxClose.addEventListener('click', function() {
+                lightbox.classList.remove('active'); // Ocultar lightbox
+               body.classList.remove('no-scroll'); // Volver a habilitar el desplazamiento del cuerpo
+            });
+
+            // Cerrar lightbox al hacer clic fuera de la imagen (sobre la superposición misma)
+            lightbox.addEventListener('click', function(event) {
+                // Verificar si el objetivo del clic es el div del lightbox mismo, no sus hijos
+                if (event.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    body.classList.remove('no-scroll');
+                }
+            });
+
+            // Opcional: Cerrar lightbox con la tecla ESC
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                    body.classList.remove('no-scroll');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
